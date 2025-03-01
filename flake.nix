@@ -2,16 +2,13 @@
   description = "NixOS configuration";
 
   inputs = {
-    # Core dependencies
     nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
     
-    # Home manager
     home-manager = {
       url = "github:nix-community/home-manager";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
-    # Hyprland
     hyprland.url = "github:hyprwm/Hyprland";
   };
 
@@ -30,20 +27,24 @@
         nixos-laptop = nixpkgs.lib.nixosSystem {
           inherit system;
           modules = [
-            # Core config
+            # Import the hardware configuration first
+            ./hardware-configuration.nix
+            
+            # Core configuration
             ./configuration.nix
-
+            
             # Home-manager module
             home-manager.nixosModules.home-manager
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
               home-manager.users.smithc = import ./home.nix;
+              home-manager.backupFileExtension = "backup";
             }
 
             # Hyprland module
             hyprland.nixosModules.default
-            {programs.hyprland.enable = true;}
+            { programs.hyprland.enable = true; }
           ];
         };
       };

@@ -17,7 +17,7 @@
   programs.git = {
     enable = true;
     userName = "Cillian Smith";
-    userEmail = "your.email@example.com";
+    userEmail = "cilliansmith.1010@gmail.com";
   };
 
   programs.kitty = {
@@ -37,16 +37,43 @@
   wayland.windowManager.hyprland = {
     enable = true;
     settings = {
-      "$mod" = "SUPER";
+       # Monitor configuration
+      # monitor = "eDP-1,preferred,auto,1";
+      monitor = "eDP-1,1920x1080,auto,1";
+
+# Disable automatic scaling
+    env = [
+      "XCURSOR_SIZE,24"
+      "GDK_SCALE,1"
+      "HYPRLAND_NO_AUTOSCALE,1"  # This is the key line
+    ];
+      
+      # Define variables for programs
+      "$terminal" = "kitty";
+      "$fileManager" = "dolphin";
+      "$menu" = "rofi -show drun -show-icons";
+      "$mod" = "SUPER";  # Sets "Windows" key as main modifier
+      
       bind = [
         "$mod, Return, exec, kitty"
         "$mod, Q, killactive"
         "$mod, M, exit"
         "$mod, E, exec, dolphin"
         "$mod, V, togglefloating"
-        "$mod, R, exec, rofi -show drun"
+        "$mod, R, exec, $menu"
         "$mod, P, pseudo"
         "$mod, J, togglesplit"
+	"$mod,1,workspace,1"
+        "$mod,2,workspace,2"
+        "$mod,3,workspace,3"
+        "$mod,4,workspace,4"
+        "$mod,5,workspace,5"
+        "$mod,6,workspace,6"
+        "$mod,7,workspace,7"
+        "$mod,8,workspace,8"
+        "$mod,9,workspace,9"
+        "$mod,0,workspace,10"
+
       ];
     };
   };

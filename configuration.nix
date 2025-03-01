@@ -2,8 +2,7 @@
 
 {
   imports = [
-    ./hardware-configuration.nix
-    ./home.nix
+    ./home
     ./modules/desktop.nix
     ./modules/development.nix
     ./modules/services.nix
@@ -13,6 +12,13 @@
   # Bootloader
   boot.loader.systemd-boot.enable = true;
   boot.loader.efi.canTouchEfiVariables = true;
+
+ nix = {
+    settings = {
+      auto-optimise-store = true;
+      experimental-features = [ "nix-command" "flakes" ];
+      };
+};
 
   # Networking
   networking = {
@@ -48,6 +54,7 @@
       neovim
     ];
   };
+  programs.zsh.enable = true;
 
   # Printing
   services.printing.enable = true;

@@ -48,8 +48,12 @@
   };
 
   # Fonts
+ # fonts.packages = with pkgs; [
+  #  (nerdfonts.override { fonts = [ "Mononoki" ]; })
+   # mononoki
+ # ];
   fonts.packages = with pkgs; [
-    (nerdfonts.override { fonts = [ "Mononoki" ]; })
-    mononoki
-  ];
+  nerd-fonts.mononoki
+  mononoki
+];
 }
