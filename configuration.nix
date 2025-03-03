@@ -2,7 +2,6 @@
 
 {
   imports = [
-    ./home
     ./modules/desktop.nix
     ./modules/development.nix
     ./modules/services.nix

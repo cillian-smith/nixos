@@ -38,7 +38,7 @@
             {
               home-manager.useGlobalPkgs = true;
               home-manager.useUserPackages = true;
-              home-manager.users.smithc = import ./home/default.nix;
+	      home-manager.users.smithc = import ./home;  # This imports ~/nixos/home/default.nix
               home-manager.backupFileExtension = "backup";
             }
 
