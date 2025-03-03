@@ -10,7 +10,6 @@
   home.packages = with pkgs; [
     # Add user-specific packages here that aren't already in configuration.nix
     zsh
-    starship
   ];
 
   # Personal configurations
@@ -88,16 +87,6 @@
     };
   };
 
-  programs.starship = {
-    enable = true;
-    settings = {
-      add_newline = false;
-      character = {
-        success_symbol = "[➜](bold green)";
-        error_symbol = "[➜](bold red)";
-      };
-    };
-  };
 
   programs.waybar = {
     enable = true;
