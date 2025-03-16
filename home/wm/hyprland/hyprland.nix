@@ -20,11 +20,10 @@
       
       # Autostart (We'll handle this with a script to be created separately)
       "exec-once" = [
-        "~/.config/hypr/start.sh"
 	# Start the status bar
 	"waybar &"
 	# Set a wallpaper
-	"swww init && swww img ~/.config/hypr/wallpaper.jpg"
+	"swww init && swww img ~/nixos/home/wm/hyprland/wallpapers/yinyang.jpg"
 	# Start notification daemon
 	"mako &"
 	# Start network manager applet
@@ -44,7 +43,7 @@
         gaps_in = 5;
         gaps_out = 10;
         border_size = 2;
-        "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
+        "col.active_border" = "rgba(fdf4dcee) rgba(c2b5a8ee) 45deg";
         "col.inactive_border" = "rgba(595959aa)";
         resize_on_border = false;
         allow_tearing = false;
@@ -138,7 +137,7 @@
       
       # Gesture configuration
       gestures = {
-        workspace_swipe = false;
+        workspace_swipe = true;
       };
       
       # Per-device configuration

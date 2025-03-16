@@ -52,8 +52,4 @@
   #  (nerdfonts.override { fonts = [ "Mononoki" ]; })
    # mononoki
  # ];
-  fonts.packages = with pkgs; [
-  nerd-fonts.mononoki
-  mononoki
-];
 }

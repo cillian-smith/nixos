@@ -6,10 +6,10 @@
     theme = "Tokyo Night";
     font = {
       name = "Mononoki Nerd Font";
-      size = 12;
+      size = 10;
     };
     settings = {
-      background_opacity = "0.95";
+      background_opacity = "0.90";
       confirm_os_window_close = 0;
     };
   };

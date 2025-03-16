@@ -2,10 +2,7 @@
 
 {
   imports = [
-    ./modules/desktop.nix
-    ./modules/development.nix
-    ./modules/services.nix
-    ./modules/system.nix
+    ./modules
   ];
 
   # Bootloader

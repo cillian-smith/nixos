@@ -13,9 +13,9 @@
         height = 30;
         spacing = 4;
         
-        modules-left = ["hyprland/workspaces" "hyprland/mode" "hyprland/window"];
-        modules-center = ["clock"];
-        modules-right = ["pulseaudio" "network" "cpu" "memory" "temperature" "battery" "tray"];
+        modules-left = ["hyprland/mode" "hyprland/window"];
+        modules-center = ["hyprland/workspaces"];
+        modules-right = ["pulseaudio" "network" "group/hardware" "temperature" "battery" "tray" "clock"];
         
         "hyprland/workspaces" = {
           format = "{name}";
@@ -31,33 +31,49 @@
         };
         
         tray = {
-          spacing = 10;
+          spacing = 5;
         };
         
         clock = {
-          format = "{:%H:%M}";
+          format = "{:%H:%M:%S}";
           format-alt = "{:%Y-%m-%d}";
           tooltip-format = "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
-          interval = 60;
+          interval = 5;
         };
         
         cpu = {
-          format = "{usage}% ";
-          tooltip = false;
+          format = " {usage}% ";
+          tooltip = true;
         };
         
         memory = {
-          format = "{}% ";
+          format = "   {}% ";
+	  tooltip = true;
         };
+
+	disk = {
+	  format = "  {specific_free:0.2f} Gb";
+	  unit = "GB";
+	  tooltip = true;
+	};
         
         temperature = {
           thermal-zone = 2;
           hwmon-path = "/sys/class/hwmon/hwmon2/temp1_input";
           critical-threshold = 80;
-          format = "{temperatureC}°C {icon}";
-          format-icons = ["" "" ""];
+          format = "{icon} {temperatureC}°C";
+          format-icons = ["" "" ""];
         };
         
+	"group/hardware" = {
+	  orientation = "horizontal";
+	  modules = [
+	    "cpu"
+	    "disk"
+	    "memory"
+	  ];
+	};
+
         battery = {
           states = {
             good = 95;
@@ -67,13 +83,13 @@
           format = "{capacity}% {icon}";
           format-charging = "{capacity}% ";
           format-plugged = "{capacity}% ";
-          format-alt = "{time} {icon}";
-          format-icons = ["" "" "" "" ""];
+          format-alt = "{icon} {time}";
+          format-icons = [" " " " " " " " " "];
         };
         
         network = {
-          format-wifi = "{essid} ({signalStrength}%) ";
-          format-ethernet = "Connected  ";
+          format-wifi = "  {essid} ({signalStrength}%)";
+          format-ethernet = "Connected  ";
           tooltip-format = "{ifname} via {gwaddr} ";
           format-linked = "{ifname} (No IP) ";
           format-disconnected = "Disconnected ⚠";
@@ -81,10 +97,10 @@
         };
         
         pulseaudio = {
-          format = "{volume}% {icon} {format_source}";
-          format-bluetooth = "{volume}% {icon} {format_source}";
+          format = "  {volume}%";
+          format-bluetooth = "{icon} {volume}% {format_source}";
           format-bluetooth-muted = " {icon} {format_source}";
-          format-muted = " {format_source}";
+          format-muted = "x";
           format-source = "{volume}% ";
           format-source-muted = "";
           format-icons = {
@@ -105,43 +121,57 @@
       * {
         border: none;
         border-radius: 0;
-        font-family: Mononoki Nerd Font, Roboto, Arial, sans-serif;
+        font-family: Mononoki Nerd Font;
         font-size: 13px;
         min-height: 0;
       }
       
       window#waybar {
-        background-color: rgba(43, 48, 59, 0.8);
-        border-bottom: 3px solid rgba(100, 114, 125, 0.5);
-        color: #ffffff;
+        background-color: rgba(43, 48, 59, 0.0);
+        border-bottom: 3px solid rgba(100, 114, 125, 0.0);
+        color: #fafafa;
         transition-property: background-color;
         transition-duration: .5s;
       }
       
       window#waybar.hidden {
-        opacity: 0.2;
+        opacity: 0.0;
       }
       
+      #workspaces {
+	background: #151010;
+	margin: 5px 5px 5px 5px;
+	padding: 4px 1px;
+	border-radius: 12px;
+	font-weight: normal;
+	font-style: normal;
+	opacity: 1;
+      }
+
       #workspaces button {
-        padding: 0 5px;
-        background-color: transparent;
-        color: #ffffff;
-        border-bottom: 3px solid transparent;
+        padding: 0px 5px;
+	margin: 0px 3px;
+	border-radius: 12px;
+	color: #fdf4dc;
+	background-color: #040404;
+	transition: all 0.3s ease;
+	opacity: 0.5;
       }
       
+      #workspaces button.active {
+        color: #000000;
+	font-weight: bold;
+	background-color: #ffffff;
+
+      }
+
       #workspaces button:hover {
-        background: rgba(0, 0, 0, 0.2);
+        background: #ffffff;
         box-shadow: inset 0 -3px #ffffff;
-      }
-      
-      #workspaces button.focused {
-        background-color: #64727D;
-        border-bottom: 3px solid #ffffff;
       }
       
       #mode {
         background-color: #64727D;
-        border-bottom: 3px solid #ffffff;
       }
       
       #clock,
@@ -157,18 +187,22 @@
       #mode,
       #window,
       #idle_inhibitor {
-        padding: 0 10px;
-        margin: 0 4px;
-        color: #ffffff;
+        padding: 1px 12px 1px 12px;
+        margin: 2px;
+	background-color: #000000;
+	color: #fdf4dc;
+	border-radius: 20px;
+	opacity: 0.8;
       }
       
       #clock {
-        background-color: #64727D;
+	background-color: #000000;
+	color: #fdf4dc;
       }
       
       #battery {
-        background-color: #ffffff;
-        color: #000000;
+	background-color: #000000;
+	color: #fdf4dc;
       }
       
       #battery.charging, #battery.plugged {
@@ -194,38 +228,42 @@
       }
       
       #cpu {
-        background-color: #2ecc71;
-        color: #000000;
+	background-color: #000000;
+	color: #fdf4dc;
       }
       
       #memory {
-        background-color: #9b59b6;
+	background-color: #000000;
+	color: #fdf4dc;
       }
       
       #network {
-        background-color: #3498db;
+	background-color: #000000;
+	color: #fdf4dc;
       }
       
       #network.disconnected {
-        background-color: #f53c3c;
+	background-color: #000000;
+	color: #fdf4dc;
       }
       
       #pulseaudio {
-        background-color: #f1c40f;
-        color: #000000;
+	background-color: #000000;
+	color: #fdf4dc;
       }
       
       #pulseaudio.muted {
-        background-color: #90b1b1;
+        background-color: #d3b1b1;
         color: #2a5c45;
       }
       
       #temperature {
-        background-color: #f0932b;
+	background-color: #000000;
+	color: #fdf4dc;
       }
       
       #temperature.critical {
-        background-color: #eb4d4b;
+        background-color: #ff2222;
       }
       
       #tray {
