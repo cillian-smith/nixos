@@ -1,20 +1,22 @@
 {config, pkgs, ...}:
 
 {
-environment.systemPackages = with pkgs; [
+home.packages = with pkgs; [
     mako
 ];
 
-mako = {
+programs.mako = {
   enable = true;
-#  actions = true; 
- # anchor = "top-right";
- # background-color = "#050505BB";
- # text-color = "#FFFFFFFF";
- # padding = "10";
- # margin = "5";
- # icons = true;
- # border-radius = "10";
+  actions = true; 
+  font = "monospace 9";
+  anchor = "top-right";
+  backgroundColor = "#05050599";
+  textColor = "#FFFFFFFF";
+  padding = "10";
+  margin = "5";
+  icons = true;
+  borderRadius = 10;
+  borderColor = "#fdf4dc";
 };
 
 
