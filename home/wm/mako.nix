@@ -5,7 +5,7 @@ home.packages = with pkgs; [
     mako
 ];
 
-programs.mako = {
+services.mako = {
   enable = true;
   actions = true; 
   font = "monospace 9";
