@@ -23,7 +23,7 @@
   # Desktop environment packages
   environment.systemPackages = with pkgs; [
     waybar
-    mako
+#    mako
     swww
     kitty
     rofi-wayland
@@ -46,10 +46,4 @@
     enable = true;
     extraPortals = [pkgs.xdg-desktop-portal-gtk];
   };
-
-  # Fonts
- # fonts.packages = with pkgs; [
-  #  (nerdfonts.override { fonts = [ "Mononoki" ]; })
-   # mononoki
- # ];
 }

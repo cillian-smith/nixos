@@ -3,5 +3,6 @@
 imports = [
     ./hyprland
     ./waybar.nix
+    ./mako.nix
   ];
 }

@@ -3,7 +3,7 @@
 
   programs.kitty = {
     enable = true;
-    theme = "Tokyo Night";
+    theme = "Gruvbox Dark Hard";
     font = {
       name = "Mononoki Nerd Font";
       size = 10;
