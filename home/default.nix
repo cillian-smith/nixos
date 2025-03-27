@@ -1,5 +1,5 @@
 # home/default.nix
-{ config, lib, pkgs, ... }:
+{ config, lib, pkgs, inputs, ... }:
 
 {
   # Basic user settings
