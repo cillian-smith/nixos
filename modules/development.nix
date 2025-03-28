@@ -1,10 +1,10 @@
-{ config, pkgs, inputs, ... }:
+{ config, pkgs, ... }:
 
 {
   environment.systemPackages = with pkgs; [
     # Development tools
     git
-    inputs.neovim-config.packages.${pkgs.system}.default   
+    # inputs.neovim-config.packages.${pkgs.system}.default   
      #neovim
     vscode
     docker-compose

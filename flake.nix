@@ -8,13 +8,10 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     hyprland.url = "github:hyprwm/Hyprland";
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
-    neovim-config.url = "github:cillian-smith/nix-neovim";
+     #nixvim.url = "github:cillian-smith/nix-neovim";
+     nixvim.url = "/home/smithc/programming/nix-practice/nixvim";
   };
-  outputs = { self, nixpkgs, home-manager, hyprland, nixvim, neovim-config, ... }@inputs:  # Add @inputs here
+    outputs = { self, nixpkgs, home-manager, hyprland, nixvim, ... }:
     let
       system = "x86_64-linux";
       pkgs = import nixpkgs {
@@ -28,7 +25,6 @@
       nixosConfigurations = {
         nixos-laptop = nixpkgs.lib.nixosSystem {
           inherit system;
-          specialArgs = { inherit inputs; };  # Now inputs is defined
           modules = [
             # Import the hardware configuration first
             ./hardware-configuration.nix
@@ -44,7 +40,7 @@
               home-manager.users.smithc = import ./home;
               home-manager.backupFileExtension = "backup";
               # Pass inputs to home-manager as well
-              home-manager.extraSpecialArgs = { inherit inputs; };
+              home-manager.extraSpecialArgs = { inherit nixvim; };
             }
             # Hyprland module
             hyprland.nixosModules.default

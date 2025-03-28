@@ -21,7 +21,7 @@
       # Autostart (We'll handle this with a script to be created separately)
       "exec-once" = [
 	# Start the status bar
-	"waybar &"
+	# "waybar &"
 	# Set a wallpaper
 	"swww init && swww img ~/nixos/home/wm/hyprland/wallpapers/yinyang.jpg"
 	# Start notification daemon
