@@ -1,8 +1,9 @@
-{config, lib, pkgs, ...}:
-
 {
-
-
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   programs.starship = {
     enable = true;
     settings = {
@@ -15,7 +16,6 @@
   };
 
   #home.packages = with pkgs; [
-   # starship
+  # starship
   #];
-
 }

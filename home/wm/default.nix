@@ -1,6 +1,10 @@
-{config, lib, pkgs, ...}:
 {
-imports = [
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  imports = [
     ./hyprland
     ./waybar.nix
     ./mako.nix

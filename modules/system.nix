@@ -1,13 +1,15 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   # System-wide packages
   environment.systemPackages = with pkgs; [
     btop
     fastfetch
     firefox
     git
-    neovim
+    #    neovim
     vmware-horizon-client
   ];
 

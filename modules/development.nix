@@ -1,11 +1,13 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   environment.systemPackages = with pkgs; [
     # Development tools
     git
-    # inputs.neovim-config.packages.${pkgs.system}.default   
-     #neovim
+    # inputs.neovim-config.packages.${pkgs.system}.default
+    #neovim
     vscode
     docker-compose
 
@@ -19,6 +21,5 @@
 
   # Docker configuration
   virtualisation.docker.enable = true;
-  users.users.smithc.extraGroups = [ "docker" ];
-
+  users.users.smithc.extraGroups = ["docker"];
 }

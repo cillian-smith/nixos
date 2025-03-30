@@ -1,43 +1,46 @@
 # home/wm/hyprland/config.nix
-{ config, lib, pkgs, ... }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   # Hyprland configuration
   wayland.windowManager.hyprland = {
     enable = true;
-    systemd.enable = true;  # Recommended for proper systemd integration
-    
+    systemd.enable = true; # Recommended for proper systemd integration
+
     # Define all your settings in a structured format
     settings = {
       # Monitor configuration
       monitor = ",preferred,auto,1";
-      
+
       # Define variables for programs
       "$terminal" = "kitty";
       "$fileManager" = "dolphin";
       "$menu" = "rofi -show drun -show-icons";
-      "$mainMod" = "SUPER";  # Sets "Windows" key as main modifier
-      
+      "$mainMod" = "SUPER"; # Sets "Windows" key as main modifier
+
       # Autostart (We'll handle this with a script to be created separately)
       "exec-once" = [
-	# Start the status bar
-	# "waybar &"
-	# Set a wallpaper
-	"swww init && swww img ~/nixos/home/wm/hyprland/wallpapers/yinyang.jpg"
-	# Start notification daemon
-	"mako &"
-	# Start network manager applet
-	"nm-applet --indicator &"
-	# Set keyboard repeat rate
-	"hyprctl setcursor Adwaita 24"
+        # Start the status bar
+        "waybar &"
+        # Set a wallpaper
+        "swww init && swww img ~/nixos/home/wm/hyprland/wallpapers/yinyang.jpg"
+        # Start notification daemon
+        "mako &"
+        # Start network manager applet
+        "nm-applet --indicator &"
+        # Set keyboard repeat rate
+        "hyprctl setcursor Adwaita 24"
       ];
-      
+
       # Environment variables
       env = [
         "XCURSOR_SIZE,12"
         "HYPRCURSOR_SIZE,12"
       ];
-      
+
       # General settings
       general = {
         gaps_in = 5;
@@ -49,20 +52,20 @@
         allow_tearing = false;
         layout = "dwindle";
       };
-      
+
       # Decoration settings
       decoration = {
         rounding = 5;
         active_opacity = 1.0;
         inactive_opacity = 0.5;
-        
+
         shadow = {
           enabled = true;
           range = 4;
           render_power = 3;
           color = "rgba(1a1a1aee)";
         };
-        
+
         blur = {
           enabled = true;
           size = 3;
@@ -70,11 +73,11 @@
           vibrancy = 0.1696;
         };
       };
-      
+
       # Animation settings
       animations = {
         enabled = true;
-        
+
         bezier = [
           "easeOutQuint,0.23,1,0.32,1"
           "easeInOutCubic,0.65,0.05,0.36,1"
@@ -82,7 +85,7 @@
           "almostLinear,0.5,0.5,0.75,1.0"
           "quick,0.15,0,0.1,1"
         ];
-        
+
         animation = [
           "global, 1, 10, default"
           "border, 1, 5.39, easeOutQuint"
@@ -102,24 +105,24 @@
           "workspacesOut, 1, 1.94, almostLinear, fade"
         ];
       };
-      
+
       # Dwindle layout configuration
       dwindle = {
         pseudotile = true;
         preserve_split = true;
       };
-      
+
       # Master layout configuration
       master = {
         new_status = "master";
       };
-      
+
       # Miscellaneous settings
       misc = {
         force_default_wallpaper = -1;
         disable_hyprland_logo = false;
       };
-      
+
       # Input configuration
       input = {
         kb_layout = "gb";
@@ -129,23 +132,23 @@
         kb_rules = "";
         follow_mouse = 1;
         sensitivity = 0;
-        
+
         touchpad = {
           natural_scroll = false;
         };
       };
-      
+
       # Gesture configuration
       gestures = {
         workspace_swipe = true;
       };
-      
+
       # Per-device configuration
       device = {
         name = "epic-mouse-v1";
         sensitivity = -0.5;
       };
-      
+
       # Key bindings
       bind = [
         # Basic window/system controls
@@ -157,13 +160,13 @@
         "$mainMod, R, exec, $menu"
         "$mainMod, P, pseudo,"
         "$mainMod, J, togglesplit,"
-        
+
         # Focus movement with arrow keys
         "$mainMod, left, movefocus, l"
         "$mainMod, right, movefocus, r"
         "$mainMod, up, movefocus, u"
         "$mainMod, down, movefocus, d"
-        
+
         # Workspace switching
         "$mainMod, 1, workspace, 1"
         "$mainMod, 2, workspace, 2"
@@ -175,7 +178,7 @@
         "$mainMod, 8, workspace, 8"
         "$mainMod, 9, workspace, 9"
         "$mainMod, 0, workspace, 10"
-        
+
         # Move windows to workspace
         "$mainMod SHIFT, 1, movetoworkspace, 1"
         "$mainMod SHIFT, 2, movetoworkspace, 2"
@@ -187,16 +190,16 @@
         "$mainMod SHIFT, 8, movetoworkspace, 8"
         "$mainMod SHIFT, 9, movetoworkspace, 9"
         "$mainMod SHIFT, 0, movetoworkspace, 10"
-        
+
         # Special workspace (scratchpad)
         "$mainMod, S, togglespecialworkspace, magic"
         "$mainMod SHIFT, S, movetoworkspace, special:magic"
-        
+
         # Scroll through workspaces
         "$mainMod, mouse_down, workspace, e+1"
         "$mainMod, mouse_up, workspace, e-1"
       ];
-      
+
       # Media key bindings
       bindel = [
         # Volume controls
@@ -204,12 +207,12 @@
         ",XF86AudioLowerVolume, exec, wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%-"
         ",XF86AudioMute, exec, wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
         ",XF86AudioMicMute, exec, wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle"
-        
+
         # Brightness controls
         ",XF86MonBrightnessUp, exec, brightnessctl s 10%+"
         ",XF86MonBrightnessDown, exec, brightnessctl s 10%-"
       ];
-      
+
       # Media player controls
       bindl = [
         ", XF86AudioNext, exec, playerctl next"
@@ -217,13 +220,13 @@
         ", XF86AudioPlay, exec, playerctl play-pause"
         ", XF86AudioPrev, exec, playerctl previous"
       ];
-      
+
       # Mouse bindings
       bindm = [
         "$mainMod, mouse:272, movewindow"
         "$mainMod, mouse:273, resizewindow"
       ];
-      
+
       # Window rules
       windowrulev2 = [
         "suppressevent maximize, class:.*"

@@ -1,6 +1,10 @@
-{config, lib, pkgs, ...}:
 {
-imports = [
-  ./hyprland.nix
-];
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  imports = [
+    ./hyprland.nix
+  ];
 }

@@ -1,6 +1,8 @@
-{ config, pkgs, ... }:
-
 {
+  config,
+  pkgs,
+  ...
+}: {
   # SSH Server
   services.openssh = {
     enable = true;
@@ -13,7 +15,7 @@
   # Firewall configuration
   networking.firewall = {
     enable = true;
-    allowedTCPPorts = [ 22 80 443 ];
+    allowedTCPPorts = [22 80 443];
   };
 
   # System services

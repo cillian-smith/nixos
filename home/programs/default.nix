@@ -1,12 +1,15 @@
-{config, lib, pkgs,inputs,  ...}: {
+{
+  config,
+  lib,
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     ./git.nix
-#    ./neovim.nix
-#     ./steam.ni
+    ./neovim.nix
     ./kitty.nix
     ./starship.nix
     ./zsh.nix
   ];
 }
-
-
