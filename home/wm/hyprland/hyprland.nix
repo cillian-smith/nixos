@@ -13,7 +13,7 @@
     # Define all your settings in a structured format
     settings = {
       # Monitor configuration
-      monitor = ",preferred,auto,1";
+      monitor = "eDP-1,1920x1080@48,0x0,1";
 
       # Define variables for programs
       "$terminal" = "kitty";
