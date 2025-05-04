@@ -6,6 +6,7 @@
 }: {
   imports = [
     ./audio.nix
+    ./batteryProfile.nix
     ./desktop.nix
     ./development.nix
     ./font.nix
