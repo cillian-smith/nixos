@@ -7,7 +7,7 @@
 }: {
   programs.waybar = {
     enable = true;
-    systemd.enable = true; # Recommended for systemd integration
+    systemd.enable = false; # Recommended for systemd integration
 
     settings = {
       mainBar = {
