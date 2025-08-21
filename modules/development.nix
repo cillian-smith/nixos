@@ -10,6 +10,7 @@
     #neovim
     vscode
     docker-compose
+    tldr
 
     # Programming languages
     python3
