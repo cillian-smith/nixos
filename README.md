@@ -7,6 +7,8 @@ Currently, it only supports my laptop but the goal is to convert my desktop and 
 - Add a script to choose a random wall paper and apply a theme from wallust 
 https://github.com/LGFae/swww/blob/main/example_scripts/swww_randomize.sh
 
+
+- Add hyprlock to the wm config 
 - Add git aliases
 - Look into impermanance for nixos
 - Set up syncthing with server, and main machine
