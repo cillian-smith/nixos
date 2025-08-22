@@ -9,8 +9,6 @@
     fastfetch
     firefox
     git
-    #    neovim
-    vmware-horizon-client
   ];
 
   # Program configurations
