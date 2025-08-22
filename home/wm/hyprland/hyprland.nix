@@ -13,7 +13,7 @@
     # Define all your settings in a structured format
     settings = {
       # Monitor configuration
-      monitor = "eDP-1,1920x1080@48,0x0,1";
+      monitor = "eDP-1,1920x1080@120,0x0,1";
 
       # Define variables for programs
       "$terminal" = "kitty";
@@ -60,14 +60,14 @@
         inactive_opacity = 0.5;
 
         shadow = {
-          enabled = true;
+          enabled = false;
           range = 4;
           render_power = 3;
           color = "rgba(1a1a1aee)";
         };
 
         blur = {
-          enabled = true;
+          enabled = false;
           size = 3;
           passes = 1;
           vibrancy = 0.1696;
@@ -119,6 +119,7 @@
 
       # Miscellaneous settings
       misc = {
+        vfr = true;
         force_default_wallpaper = -1;
         disable_hyprland_logo = false;
       };
@@ -131,7 +132,7 @@
         kb_options = "";
         kb_rules = "";
         follow_mouse = 1;
-        sensitivity = 0.5;
+        sensitivity = 0.4;
 
         touchpad = {
           natural_scroll = false;
