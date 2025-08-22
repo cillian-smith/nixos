@@ -10,15 +10,18 @@
   };
 
   # X11 and Display settings
-  services.xserver = {
-    enable = true;
+  services = {
     displayManager.gdm = {
       enable = true;
       wayland = true;
     };
-    xkb = {
-      layout = "gb";
-      variant = "";
+
+    xserver = {
+      enable = true;
+      xkb = {
+        layout = "gb";
+        variant = "";
+      };
     };
   };
 
